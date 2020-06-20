@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <script src="https://unpkg.com/vue/dist/vue.js"></script>
+</head>
+<style> 
+    li{
+      list-style:none;
+    }
+    span{
+      width: 100px;
+      height: 100px;
+      margin-right:100px;
+      background-color: skyblue;
+      cursor:pointer;
+    }
+  </style>
+<body>
+  <div id="app">
+    <ul>
+      <li v-for="(item,index) in items">我是{{item.fruit}} <span :data-index="item.fruit" @click=clickme()>@</span></li>
+    </ul>
+  </div>
+  <script>
+    var app = new Vue({
+      el:"#app",
+      data:{
+      items:[{fruit:"1"},{fruit:"2"},{fruit:"3"},{fruit:"4"},{fruit:"5"},{fruit:"6"},{fruit:"7"},{fruit:"8"}],
+      done:[]
+      },
+      methods:{
+        clickme:function($event){
+          // 给li设置一个自定义属性，拿到当前触发元素的索引
+          var  clickCurrent = event.target.dataset.index
+          console.log(clickCurrent)
+          var transValue=[]
+          // 删除当前点击的元素，并把它添加到一个空数组中
+           transValue = this.items.splice((event.target.dataset.index-1),1)
+          console.log(transValue[0])
+          this.done.push(transValue[0])
+          // 把这个由删除项组成的数组与原数组连接一起组成新数组
+          console.log(this.done)
+          // console.log(this.items)
+          this.items = this.done.concat(this.items)
+          this.done = []
+        }
+      }
+    })
+  </script>
+</body>
+</html>

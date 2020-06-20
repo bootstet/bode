@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation: myAnimation 20s infinite both ;
+        }
+
+        @keyframes myAnimation {
+            /*创建一个动画就是来描述动画中的关键帧*/
+            /*from：开始  0%*/
+            from {
+                transform: translateX(0px,0px) scale(1,.5)  ;
+            }
+             50%{
+                 transform: translate(500px, 500px) scale(2,1.5)
+             }
+            /*to：结束  100%*/
+            100% {
+                transform: translate(500px, 500px) scale(2,1.5);
+            }
+            
+        }
+    </style>
+</head>
+    
+<body>
+    <div id="box"></div>
+    <script>
+        document.onclick = function(){
+            console.log(document.getElementById("box").style.width)
+        }
+    </script>
+</body>
+
+</html>
